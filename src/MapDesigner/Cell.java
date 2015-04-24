@@ -1,19 +1,20 @@
 package MapDesigner;
 
 public class Cell implements ICell {
+
+	char symbol;
 	
-	final char SYMBOL;
-	
-	public Cell() {
-		
+	public Cell(char symbol) {
+		this.symbol = symbol;
 	}
 	
+	public Cell(ECell cell){
+		this.symbol = cell.symbol;
+	}
+
 	@Override
 	public char getChar() {
-		// TODO Auto-generated method stub
-		return SYMBOL;
+		return symbol;
 	}
-	
-	
 
 }

@@ -15,30 +15,49 @@ public class Map implements IMap {
 	}
 	
 	@Override
-	public void setCell(int xLoc, int yLoc, ICell cell) {
-		allCells[xLoc][yLoc] = (Cell)cell;
+	public void setCell(int xLoc, int yLoc, ECell cell) {
+		allCells[xLoc][yLoc] = new Cell(cell);
 	}
 	
 	@Override
 	public void fromString(String mapString)
 	{
-		for(String symbol : mapString.split(","))
+		String[] lines = mapString.split("|");
+		allCells = setMapSize(lines[0].length(), lines.length);
+		
+		for(int y = 0; y < lines.length; y++)
 		{
-			//add stuff here
+			for(int x = 0; x < lines[y].length(); x++ )
+			{
+				setCell(x, y, lines[y].charAt(x) );
+			}
 		}
 	}
 	
 
 	@Override
-	public String toString(IMap map) {
-		// TODO Auto-generated method stub
-		return null;
+	public String toString() {
+		String string = "";
+		for(Cell[] y : allCells){
+			for(Cell x : y) {
+				string += x.toString();
+			}
+			string += '|';
+		}
+		
+		return string.substring(0, string.length()-1);
+	}
+
+
+	@Override
+	public Cell[][] setMapSize(int width, int height) {
+		return new Cell[width][height];
 	}
 
 	@Override
-	public Boolean checkMap() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setCell(int xLoc, int yLoc, char cell) {
+		allCells[xLoc][yLoc] = new Cell(cell);
+		
 	}
 
 }

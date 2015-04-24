@@ -10,16 +10,6 @@ public class LevelCreator implements ILevelCreator {
 	}
 
 	@Override
-	public int getCursorY() {
-		return 0;
-	}
-
-	@Override
-	public int getCursorX() {
-		return 0;
-	}
-
-	@Override
 	public void placeCell(int xLoc, int yLoc, ICell cell) {
 		// TODO Auto-generated method stub
 
