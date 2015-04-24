@@ -22,14 +22,15 @@ public class Map implements IMap {
 	@Override
 	public void fromString(String mapString)
 	{
-		String[] lines = mapString.split("|");
-		allCells = setMapSize(lines[0].length(), lines.length);
+		String[] lines = mapString.split("\\|");
+		allCells = setMapSize(lines.length,lines[0].length());
 		
-		for(int y = 0; y < lines.length; y++)
+		for(int x = 0; x < lines.length; x++)
 		{
-			for(int x = 0; x < lines[y].length(); x++ )
+			System.out.println(x);
+			for(int y = 0; y < lines[x].length(); y++ )
 			{
-				setCell(x, y, lines[y].charAt(x) );
+				setCell(x, y, lines[x].charAt(y));
 			}
 		}
 	}
@@ -40,9 +41,9 @@ public class Map implements IMap {
 		String string = "";
 		for(Cell[] y : allCells){
 			for(Cell x : y) {
-				string += x.toString();
+				string += x.getChar();
 			}
-			string += '|';
+			string += "|";
 		}
 		
 		return string.substring(0, string.length()-1);
