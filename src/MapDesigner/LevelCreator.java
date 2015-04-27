@@ -10,15 +10,28 @@ public class LevelCreator implements ILevelCreator {
 	}
 
 	@Override
-	public void placeCell(int xLoc, int yLoc, ICell cell) {
-		// TODO Auto-generated method stub
+	public void placeCell(int xLoc, int yLoc, char cell) {
+		currentMap.setCell(xLoc, yLoc, cell);
 
 	}
 
 	@Override
-	public IMap newMap(int width, int height) {
-		// TODO Auto-generated method stub
-		return new Map(width, height);
+	public void newMap(String name, int width, int height) {
+		this.currentMap = new Map(name, width, height);
 	}
+	
+	public void newMap(String name, String fromString) {
+		Map map = new Map(name);
+		map.fromString(fromString);
+		
+		this.currentMap = map;
+	}
+
+	@Override
+	public String saveMap() {
+		
+		return this.currentMap.toString();
+	}
+
 
 }

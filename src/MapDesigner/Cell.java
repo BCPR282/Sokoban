@@ -16,5 +16,5 @@ public class Cell implements ICell {
 	public char getChar() {
 		return symbol;
 	}
-
+	
 }

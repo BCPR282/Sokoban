@@ -3,20 +3,27 @@ package MapDesigner;
 public class Map implements IMap {
 
 	Cell[][] allCells;
+	String name;
+	int height;
+	int width;
 	
-	public Map()
+	
+	public Map(String name)
 	{
-		//do NOTHING!!!
+		this.name = name;
 	}
 	
-	public Map(int width, int height)
+	public Map(String name, int width, int height)
 	{
+		this.name = name;
+		this.width = width;
+		this.height = height;
 		allCells = new Cell[width][height];
 	}
 	
 	@Override
 	public void setCell(int xLoc, int yLoc, ECell cell) {
-		allCells[xLoc][yLoc] = new Cell(cell);
+		setCell(xLoc, yLoc, cell.symbol);
 	}
 	
 	@Override
@@ -27,7 +34,6 @@ public class Map implements IMap {
 		
 		for(int x = 0; x < lines.length; x++)
 		{
-			System.out.println(x);
 			for(int y = 0; y < lines[x].length(); y++ )
 			{
 				setCell(x, y, lines[x].charAt(y));
@@ -57,8 +63,24 @@ public class Map implements IMap {
 
 	@Override
 	public void setCell(int xLoc, int yLoc, char cell) {
-		allCells[xLoc][yLoc] = new Cell(cell);
+		String chars = "@#$-+*.";
+		if(!(chars.indexOf(cell) == -1))
+		{
+			allCells[xLoc][yLoc] = new Cell(cell);
+		} else {
+			System.out.println("Symbol is not allowed. Please select a correct symbol");
+		}
 		
+		
+	}
+	
+	public char getCellAt(int x, int y) {
+		if(allCells.length > (x * y)) {
+			return allCells[x][y].getChar();
+		} else {
+			System.out.println("Cell does not exist. Please enter a correct location");
+			return ' ';
+		}
 	}
 
 }
