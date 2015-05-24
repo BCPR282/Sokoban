@@ -1,8 +1,8 @@
 package MapDesigner;
 
 public interface ILevelCreator {
-	int getCursorY();
-	int getCursorX();
-	void placeCell(int xLoc, int yLoc, ICell cell);
-	IMap newMap();
+	void placeCell(int xLoc, int yLoc, char cell);
+	void newMap(String name, int width, int height);
+	void newMap(String name, String fromString);
+	String saveMap();
 }
