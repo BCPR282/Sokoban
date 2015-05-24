@@ -2,23 +2,39 @@ package MapDesigner;
 
 import static org.junit.Assert.*;
 
-import org.junit.Before;
 import org.junit.Test;
 
 public class LevelCreatorTest {
-
-	@Before
-	public void setUp() throws Exception {
-		//LevelCreator levelCreator = new LevelCreator();
-		//Player player = new Player();
-	}
+	
 
 	@Test
-	public void test() {
-		//levelCreator.newMap();
-		//assertEquals(levelCreator.currentLevel.toString(), '----');
-		//currentLevel.placeCell(0, 0, player)
-		//assertEquals(levelCreator.currentLevel.getCell(0, 0), player);
-		fail("Not yet implemented");
+	public void testLevelCreatorContructer() {
+		LevelCreator lvlCreator = new LevelCreator();
+		assertNotNull(lvlCreator.currentLevel);
 	}
+	
+	@Test
+	public void testLevelCreatorNewMap() {
+		LevelCreator lvlCreator = new LevelCreator();
+		lvlCreator.currentLevel = lvlCreator.newMap(5, 5);
+		assertEquals(5, lvlCreator.currentLevel.allCells.length);
+		assertEquals(5, lvlCreator.currentLevel.allCells[0].length);
+	}
+	
+	@Test
+	public void testLevelCreatorPlaceCellChar() {
+		LevelCreator lvlCreator = new LevelCreator();
+		lvlCreator.currentLevel = lvlCreator.newMap(5, 5);
+		lvlCreator.placeCell(0, 0, '$');
+		assertEquals('$', lvlCreator.currentLevel.allCells[0][0].symbol);
+	}
+	
+	@Test
+	public void testLevelCreatorPlaceCellCell() {
+		LevelCreator lvlCreator = new LevelCreator();
+		lvlCreator.currentLevel = lvlCreator.newMap(5, 5);
+		lvlCreator.placeCell(0, 0, new Cell('$'));
+		assertEquals('$', lvlCreator.currentLevel.allCells[0][0].symbol);
+	}
+
 }
